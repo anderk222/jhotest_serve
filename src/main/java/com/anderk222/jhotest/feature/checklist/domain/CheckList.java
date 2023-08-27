@@ -50,7 +50,7 @@ public class CheckList {
     @Column(columnDefinition = "DATE")
     private LocalDate edited;
     
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "check_list")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<CheckListItem> items;
