@@ -16,6 +16,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -44,6 +46,7 @@ public class Proyect {
     @ManyToOne( fetch = FetchType.LAZY )
     @JoinColumn(referencedColumnName = "id", name = "\"user\"")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
     
 }

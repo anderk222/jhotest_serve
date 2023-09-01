@@ -37,13 +37,9 @@ public class CheckListItem {
 
     @Column(length = 255, nullable = false)
     private String question;
-    @Lob
-    @Column(columnDefinition = "text")
-    private String parameters;
-
-    private boolean answer;
 
     private boolean passed;
+    
     @Lob
     @Column(columnDefinition = "text")
     private String comment;
