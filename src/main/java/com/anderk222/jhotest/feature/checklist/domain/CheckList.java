@@ -20,6 +20,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
@@ -53,7 +54,7 @@ public class CheckList {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "check_list")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private Set<CheckListItem> items;
+    private Set<CheckListItem> items = new HashSet<>();
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="proyect", referencedColumnName = "id")

@@ -38,6 +38,6 @@ public class TestCase {
     @Column(columnDefinition = "text")
     private String parameters;
     
-    private boolean passed;
+    private boolean passed = false;
     
 }

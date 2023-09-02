@@ -16,6 +16,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
@@ -38,7 +39,7 @@ public class CheckListItem {
     @Column(length = 255, nullable = false)
     private String question;
 
-    private boolean passed;
+    private boolean passed = false;
     
     @Lob
     @Column(columnDefinition = "text")
@@ -47,6 +48,6 @@ public class CheckListItem {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id", name = "check_list_item")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<TestCase> testCases;
+    private List<TestCase> testCases = new ArrayList<>();
 
 }
