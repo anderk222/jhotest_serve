@@ -19,13 +19,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface CheckListRespository extends JpaRepository<CheckList, Long>{
     
     
-    Page<CheckList> findByProyectId(long id,Pageable pageable);
+    Page<CheckList> findByProyectId(Long id,Pageable pageable);
     
     Page<CheckList> findByNameContainingIgnoreCaseAndProyectId(
-            String name, long proyect, Pageable pageable
+            String name, Long proyect, Pageable pageable
     );
     
-    Page<CheckListProjection> findAllByProyectId(long project, Pageable page);
+    Page<CheckListProjection> findAllByProyectId(Long project, Pageable page);
 
     
     

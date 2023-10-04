@@ -33,8 +33,8 @@ import org.hibernate.annotations.OnDeleteAction;
 public class CheckListItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(length = 255, nullable = false)
     private String question;

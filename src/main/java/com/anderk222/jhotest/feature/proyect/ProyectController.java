@@ -26,82 +26,93 @@ import org.springframework.web.bind.annotation.RestController;
  * @author linuxlite
  */
 
-
 @RestController
 @RequestMapping("/api/v1/proyect")
-@CrossOrigin({"*"})
+@CrossOrigin({ "*" })
 public class ProyectController {
 
     @Autowired
-    private ProyectService proyectService;
+    private ProyectService service;
 
     @GetMapping("/{user}/user")
     public Pagination<Proyect> findAll(
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "limit", defaultValue = "5", required = false) int limit,
-            @PathVariable long user
-    ) {
+            @PathVariable Long user) {
 
-        return proyectService.findAll(user, page, limit);
+        return service.findAll(user, page, limit);
 
     }
-    
+
     @GetMapping("/{user}/user/sort")
     public List<ProjectSort> sort(
-            @PathVariable long user,
+            @PathVariable Long user,
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(name = "limit", defaultValue = "10", required = false) int limit
-    ) 
-    {
-        return proyectService.sort(user, page, limit);
+            @RequestParam(name = "limit", defaultValue = "10", required = false) int limit) {
+        return service.sort(user, page, limit);
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<Proyect> findById(@PathVariable long id){
-        
-        Proyect res = proyectService.findById(id);
-        
+    public ResponseEntity<Proyect> findById(@PathVariable Long id) {
+
+        Proyect res = service.findById(id);
+
         return ResponseEntity.ok().body(res);
-        
+
     }
 
     @GetMapping("/search/{user}/user")
     public Pagination<Proyect> search(
-            @PathVariable long user,
-            @RequestParam(name="value", defaultValue = "", required = false) String value,
+            @PathVariable Long user,
+            @RequestParam(name = "value", defaultValue = "", required = false) String value,
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(name = "limit", defaultValue = "5", required = false) int limit
-    ) 
-    {
-        return proyectService.search(value, page, page, limit);
+            @RequestParam(name = "limit", defaultValue = "5", required = false) int limit) {
+        return service.search(value, page, page, limit);
     }
 
     @PostMapping
-    public ResponseEntity<Proyect> save(@RequestBody Proyect proyect){
-        
-        Proyect res =  proyectService.save(proyect);
-        
+    public ResponseEntity<Proyect> save(@RequestBody Proyect proyect) {
+
+        Proyect res = service.save(proyect);
+
         return ResponseEntity.status(201).body(res);
-        
+
     }
-    
+
     @PutMapping("/{id}")
-    public ResponseEntity<Proyect> update(@PathVariable long id, @RequestBody Proyect proyect){
-        
-        Proyect res = proyectService.update(id, proyect);
-        
+    public ResponseEntity<Proyect> update(@PathVariable Long id, @RequestBody Proyect proyect) {
+
+        Proyect res = service.update(id, proyect);
+
         return ResponseEntity.ok(res);
-        
-        
-    } 
-    
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Proyect> delete(@PathVariable long id){
-        
-        Proyect res = proyectService.delete(id);
-        
-        return ResponseEntity.ok(res);
-        
+
     }
-    
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Proyect> delete(@PathVariable Long id) {
+
+        Proyect res = service.delete(id);
+
+        return ResponseEntity.ok(res);
+
+    }
+
+    @PostMapping("/adduser/{id}/{userId}/user")
+    public Proyect addUser(@PathVariable long id, @PathVariable long userId) {
+
+        return service.addUser(id, userId);
+
+    }
+
+    @GetMapping("/findBySharedUser/{userId}")
+    public Pagination<Proyect> findBySharedUser(
+            @PathVariable long userId,
+            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
+            @RequestParam(name = "limit", defaultValue = "5", required = false) int limit
+
+    ) {
+
+        return service.findBySharedUser(userId, page, limit);
+
+    }
 }

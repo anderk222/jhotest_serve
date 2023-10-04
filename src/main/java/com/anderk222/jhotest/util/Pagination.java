@@ -26,9 +26,9 @@ public class Pagination <T> {
     private int limit;
     private List<T> data;
     private int totalPages;
-    private long totalItems;
+    private Long totalItems;
     
-    public  Pagination (int page, int limit, int totalPages, long totalItems ){
+    public  Pagination (int page, int limit, int totalPages, Long totalItems ){
         
         this.page = page;
         this.limit =limit;
@@ -43,6 +43,8 @@ public class Pagination <T> {
         this.limit =limit;
         
     }
+
+    
     
     
 }

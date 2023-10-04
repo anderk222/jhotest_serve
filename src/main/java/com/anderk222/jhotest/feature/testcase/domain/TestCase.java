@@ -25,8 +25,8 @@ import lombok.Data;
 public class TestCase {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
     @Column(length = 200, nullable = false)
     private String name;

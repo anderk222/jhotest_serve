@@ -10,7 +10,7 @@ package com.anderk222.jhotest.feature.proyect.domain;
  */
 public interface ProjectSort {
     
-    public long getId();
+    public Long getId();
     public String getName();
     
 }

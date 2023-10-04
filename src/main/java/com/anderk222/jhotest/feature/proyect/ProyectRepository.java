@@ -23,11 +23,13 @@ public interface ProyectRepository extends JpaRepository<Proyect, Long> {
     public List<Proyect> findAll();
 
     @Transactional
-    public Page<ProjectSort> findAllByUserId(long user,Pageable pageable);
+    public Page<ProjectSort> findAllByUserId(Long user,Pageable pageable);
 
     @Transactional
     public Page<Proyect> findByNameContainingIgnoreCase(String name, Pageable pageable);
 
     @Transactional
-    public Page<Proyect> findByUserId(long id, Pageable pageable);
+    public Page<Proyect> findByUserId(Long id, Pageable pageable);
+
+    public Page<Proyect> findBysharedUsersId(long id, Pageable pageable);
 }

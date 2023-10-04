@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public interface CheckListProjection {
     
-   public long getId();
+   public Long getId();
    
    public String getName();
    

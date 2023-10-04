@@ -7,7 +7,6 @@ package com.anderk222.jhotest.feature.checklist;
 import com.anderk222.jhotest.feature.checklist.domain.CheckList;
 import com.anderk222.jhotest.feature.checklist.domain.CheckListProjection;
 import com.anderk222.jhotest.feature.proyect.ProyectService;
-import com.anderk222.jhotest.feature.proyect.domain.Proyect;
 import com.anderk222.jhotest.util.Pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,13 +28,13 @@ public class CheckListService {
 
     public Pagination<CheckList> findAll(long proyect, int page, int limit) {
 
-        Proyect _proyect = proyectService.findById(proyect);
+        proyectService.findById(proyect);
 
         Pageable pageable = PageRequest.of(page, limit);
 
         Page<CheckList> data = checkListRepository.findByProyectId(proyect, pageable);
 
-        Pagination<CheckList> res = new Pagination(page, limit,
+        Pagination<CheckList> res = new Pagination<>(page, limit,
                 data.getTotalPages(), data.getTotalElements()
         );
 
@@ -45,14 +44,14 @@ public class CheckListService {
 
     }
     
-    public Pagination<CheckListProjection> projection(long proyect, int page, int limit){
+    public Pagination<CheckListProjection> projection(Long proyect, int page, int limit){
         
         Pageable pageable = PageRequest.of(page,limit);
         
         Page<CheckListProjection> data = checkListRepository
                 .findAllByProyectId(proyect, pageable);
         
-        Pagination<CheckListProjection> res = new Pagination(page, limit,
+        Pagination<CheckListProjection> res = new Pagination<>(page, limit,
                 data.getTotalPages(), data.getTotalElements()
         );
         
@@ -61,7 +60,7 @@ public class CheckListService {
         return res;        
     }
 
-    public CheckList findById(long id) {
+    public CheckList findById(Long id) {
 
         CheckList check_list = checkListRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("checkListNotFound"));
@@ -70,15 +69,15 @@ public class CheckListService {
 
     }
 
-    public Pagination<CheckList> search(String value, long proyect, int page, int limit) {
+    public Pagination<CheckList> search(String value, Long proyect, int page, int limit) {
 
-        Proyect _proyect = proyectService.findById(proyect);
+        proyectService.findById(proyect);
 
         Pageable pageable = PageRequest.of(page, limit);
 
         Page<CheckList> data = checkListRepository
                 .findByNameContainingIgnoreCaseAndProyectId(value, proyect, pageable);
-        Pagination<CheckList> res = new Pagination(page, limit,
+        Pagination<CheckList> res = new Pagination<>(page, limit,
                 data.getTotalPages(), data.getTotalElements()
         );
 
@@ -90,7 +89,7 @@ public class CheckListService {
 
     public CheckList save(CheckList check_list) {
 
-        Proyect proyect = proyectService.findById(check_list.getProyect().getId());
+        proyectService.findById(check_list.getProyect().getId());
 
         check_list.setId(0l);
 
@@ -98,7 +97,7 @@ public class CheckListService {
 
     }
 
-    public CheckList update(long id, CheckList check_list) {
+    public CheckList update(Long id, CheckList check_list) {
 
         System.out.println(check_list);
         
@@ -112,7 +111,7 @@ public class CheckListService {
 
     }
 
-    public CheckList delete(long id) {
+    public CheckList delete(Long id) {
 
         CheckList check_list = this.findById(id);
 
