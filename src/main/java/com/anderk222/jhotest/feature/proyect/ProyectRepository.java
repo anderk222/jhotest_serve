@@ -26,7 +26,7 @@ public interface ProyectRepository extends JpaRepository<Proyect, Long> {
     public Page<ProjectSort> findAllByUserId(Long user,Pageable pageable);
 
     @Transactional
-    public Page<Proyect> findByNameContainingIgnoreCase(String name, Pageable pageable);
+    public Page<Proyect> findByNameContainingIgnoreCaseAndUserId(String name, long userId,Pageable pageable);
 
     @Transactional
     public Page<Proyect> findByUserId(Long id, Pageable pageable);

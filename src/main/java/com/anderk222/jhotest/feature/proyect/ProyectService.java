@@ -51,11 +51,11 @@ public class ProyectService {
 
     }
 
-    public Pagination<Proyect> search(String value, int user, int page, int limit) {
+    public Pagination<Proyect> search(String value, long userId, int page, int limit) {
 
         Pageable pageable = PageRequest.of(page, limit);
 
-        Page<Proyect> data = repository.findByNameContainingIgnoreCase(value, pageable);
+        Page<Proyect> data = repository.findByNameContainingIgnoreCaseAndUserId(value,userId, pageable);
 
         Pagination<Proyect> res = new Pagination<>(page, limit, data
                 .getTotalPages(), data.getTotalElements());

@@ -67,7 +67,7 @@ public class ProyectController {
             @RequestParam(name = "value", defaultValue = "", required = false) String value,
             @RequestParam(name = "page", defaultValue = "0", required = false) int page,
             @RequestParam(name = "limit", defaultValue = "5", required = false) int limit) {
-        return service.search(value, page, page, limit);
+        return service.search(value, user, page, limit);
     }
 
     @PostMapping
